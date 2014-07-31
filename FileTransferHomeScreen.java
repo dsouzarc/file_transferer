@@ -8,18 +8,31 @@ public class FileTransferHomeScreen extends JFrame {
   private static final String IPADDRESS = getIPAddress();
   
   private final JPanel mainPanel = new JPanel();
+  
   private final JLabel ipAddressLabel = new JLabel();
+  
+  private final JButton chooseFileButton = new JButton();
+  private final JButton sendFileButton = new JButton();
+  private final JButton receiveFileButton = new JButton();
   
   public FileTransferHomeScreen() {
     super("File Transferer");
     
     ipAddressLabel.setText("IP Address: " + IPADDRESS);
     
-    //Add
+    addComponents();
+    setLayout();
+  }
+  
+  /** Adds all variables to panel and panel to frame*/
+  private void addComponents() {
     mainPanel.add(ipAddressLabel);
     add(mainPanel);
-    
-    //Layout stuff
+  }
+  
+  /** Sets the layout of everything */
+  private void setLayout() {
+    mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
     setVisible(true);
     setSize(500, 500);
   }
@@ -28,6 +41,7 @@ public class FileTransferHomeScreen extends JFrame {
     new FileTransferHomeScreen();
   }
   
+  /** Returns machine's IP Address */
   private static String getIPAddress() {
     try { 
       return InetAddress.getLocalHost().getHostAddress();
